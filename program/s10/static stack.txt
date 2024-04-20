@@ -1,0 +1,119 @@
+#include<stdio.h>
+#define max 5
+struct stack
+{
+    int item[max];
+    int top;
+};
+struct stack s;
+void init(struct stack *sp)
+{
+    sp->top=-1;
+}
+int isempty(struct stack *sp)
+{
+    int t;
+    if(sp->top==-1)
+    {
+        t=1;
+    }
+    else
+    {
+        t=0;
+    }
+    return t;
+}
+int isfull(struct stack *sp)
+{
+    int t;
+    if(sp->top==max-1)
+    {
+        t=1;
+    }
+    else
+    {
+        t=0;
+    }
+    return t;
+}
+void push(struct stack *sp,int n)
+{
+    ++sp->top;
+    sp->item[sp->top]=n;
+}
+int pop(struct stack *sp)
+{
+    int x;
+    x=sp->item[sp->top];
+    sp->top--;
+    return x;
+    
+}
+int peek(struct stack *sp)
+{
+ int n;
+ n=sp->item[sp->top];
+return n;
+}
+void main()
+{
+    
+    struct stack *sp;
+    init(&sp);
+    int ch,q=0,n;
+    do
+    {
+        printf("\n1.Full\n2.empty\n3.push\n4.pop\n5.peek\n6.exit");
+        printf("\nEnter ypurs choice: ");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:if(!isfull(&sp))
+            {
+                printf("\nstack is not full");
+            }
+            else
+            {
+                printf("\nstack overflow");
+            }
+            break;
+            case 2:if(!isempty(&sp))
+            {
+                printf("\nstack is not empty");
+            }
+            else
+            {
+                printf("\nstack is empty");
+            }
+            break;
+            case 3:if(isfull(&sp))
+            {
+               printf("\nstack overflow");
+            }
+            else
+            {
+                 printf("\nenter value tu push");
+                scanf("%d",&n);
+                push(&sp,n);
+                
+            }
+            break;
+            case 4:if(isempty(&sp))
+            {
+                printf("\nstack is empty");
+                
+            }
+            else
+            {
+                printf("\nthe deleted elemet is %d",pop(&sp));
+                
+            }
+            break;
+            case 5:(n=peek(&sp));
+            printf("\nthe top elements is %d",n);
+            break;
+            case 6:q=1;
+            break;
+        }
+    }while(q==0);
+}

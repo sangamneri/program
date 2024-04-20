@@ -1,0 +1,63 @@
+#include<stdio.h>
+#define max 5
+struct stack
+{
+    int item[max];
+    int top;
+};
+struct stack s;
+
+void init(struct stack *sp)
+{
+    sp->top=-1;
+}
+int isempty(struct stack *sp)
+{
+    int t;
+    if(sp->top==-1)
+    {
+        t=1;
+    }
+    else
+    {
+        t=0;
+    }
+    return t;
+}
+
+int pop(struct stack *sp)
+{
+    int x;
+    x=sp->item[sp->top];
+    sp->top--;
+    return x;
+}
+void push(struct stack *sp,int n)
+{
+    ++sp->top;
+    sp->item[sp->top]=n;
+}
+
+void reverse(char str[20])
+{
+    int i;
+    init(&s);
+    for(i=0;str[i]!='\0';i++)
+    push(&s,str[i]);
+    i=0;
+    while(!isempty(&s))
+    {
+     str[i++]=pop(&s);   
+    }
+    
+}
+void main()
+{
+    
+    char str[20];
+    printf("enter the string: ");
+    scanf("%s",&str);
+    
+    reverse(str);
+    printf("the reverse string is %s",str);
+}
